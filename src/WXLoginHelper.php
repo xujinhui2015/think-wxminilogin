@@ -1,5 +1,5 @@
 <?php
-namespace wlt\wxmini;
+namespace cory\wxminilogin;
 
 use think\Config;
 

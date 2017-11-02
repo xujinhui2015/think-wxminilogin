@@ -1,5 +1,5 @@
 <?php
-namespace wlt\wxmini;
+namespace cory\wxminilogin;
 
 /**
  * PKCS7Encoder class

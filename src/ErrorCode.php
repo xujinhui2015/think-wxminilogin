@@ -1,6 +1,6 @@
 <?php
 
-namespace wlt\wxmini;
+namespace cory\wxminilogin;
 /**
  * error code 说明.
  * <ul>
