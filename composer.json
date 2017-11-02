@@ -1,0 +1,20 @@
+{
+    "name": "cory/think-wxminilogin",
+    "description": "This a thinkphp5 login .",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "xujinhui",
+            "email": "591196507@qq.com"
+        }
+    ],
+    "require": {
+	"php": ">=5.6.30"
+    },
+    "autoload": {
+        "psr-4": {
+            "wlt\\wxmini\\": "src/"
+        }
+    }
+}
