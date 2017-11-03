@@ -2,6 +2,7 @@
     "name": "cory/think-wxminilogin",
     "description": "this a miniwx login",
     "license": "MIT",
+    "version": "1.0",
     "authors": [
         {
             "name": "xujinhui",
