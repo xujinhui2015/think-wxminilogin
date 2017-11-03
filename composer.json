@@ -1,5 +1,6 @@
 {
     "name": "cory/think-wxminilogin",
+    "minimum-stability": "dev",
     "description": "this a miniwx login",
     "license": "MIT",
     "version": "1.0",
@@ -9,7 +10,6 @@
             "email": "591196507@qq.com"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.0"
     },
