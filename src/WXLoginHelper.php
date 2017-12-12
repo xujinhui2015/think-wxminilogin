@@ -172,7 +172,7 @@ class WXLoginHelper {
         return $result;
     }
 
-    /**
+ /**
      * 读取/dev/urandom获取随机数
      * @param $len
      * @return mixed|string
@@ -186,7 +186,9 @@ class WXLoginHelper {
         }
         else
         {
-            trigger_error('Can not open /dev/urandom.');
+            //获取/dev/urandom失败
+            return $this->randpw($len);
+            //trigger_error('Can not open /dev/urandom.');
         }
         // convert from binary to string
         $result = base64_encode($result);
@@ -194,5 +196,40 @@ class WXLoginHelper {
         $result = strtr($result, '+/', '-_');
 
         return substr($result, 0, $len);
+    }
+
+    //如果获取/dev/urandom随机数失败则会读取这个函数的随机方法
+    public function randpw($len=16,$format='ALL'){
+        $is_abc = $is_numer = 0;
+        $password = $tmp ='';
+        switch($format){
+            case 'ALL':
+                $chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                break;
+            case 'CHAR':
+                $chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+                break;
+            case 'NUMBER':
+                $chars='0123456789';
+                break;
+            default :
+                $chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                break;
+        } // www.jb51.net
+        mt_srand((double)microtime()*1000000*getmypid());
+        while(strlen($password)<$len){
+            $tmp =substr($chars,(mt_rand()%strlen($chars)),1);
+            if(($is_numer <> 1 && is_numeric($tmp) && $tmp > 0 )|| $format == 'CHAR'){
+                $is_numer = 1;
+            }
+            if(($is_abc <> 1 && preg_match('/[a-zA-Z]/',$tmp)) || $format == 'NUMBER'){
+                $is_abc = 1;
+            }
+            $password.= $tmp;
+        }
+        if($is_numer <> 1 || $is_abc <> 1 || empty($password) ){
+            $password = $this->randpw($len,$format);
+        }
+        return $password;
     }
 }
